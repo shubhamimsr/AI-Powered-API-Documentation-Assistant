@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Sample API
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com/v1
+
+paths:
+  /chat/completions:
+    post:
+      summary: Create a chat completion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                      content:
+                        type: string
+      responses:
+        '200':
+          description: Successful response
+
+  /embeddings:
+    post:
+      summary: Create embeddings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                input:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+
+  /models:
+    get:
+      summary: List available models
+      responses:
+        '200':
+          description: Successful response

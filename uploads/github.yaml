@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: Sample API
+  version: 1.0.0
+
+servers:
+  - url: https://api.github.com
+
+paths:
+  /repos/{owner}/{repo}:
+    get:
+      summary: Get a repository
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: repo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+
+  /repos/{owner}/{repo}/issues:
+    post:
+      summary: Create an issue
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: repo
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+      responses:
+        '201':
+          description: Issue created
+
+  /user/repos:
+    get:
+      summary: List repositories for the authenticated user
+      responses:
+        '200':
+          description: Successful response

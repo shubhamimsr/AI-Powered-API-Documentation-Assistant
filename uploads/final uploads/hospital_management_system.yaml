@@ -1,0 +1,139 @@
+openapi: 3.0.3
+info:
+  title: Hospital Management API
+  description: API specification for hospital management services including patients, doctors, appointments, admissions, discharge, laboratory, radiology, pharmacy, billing, and insurance.
+  version: 1.0.0
+servers:
+  - url: https://api.hospital.com/v1
+    description: Production server
+  - url: https://sandbox.hospital.com/v1
+    description: Sandbox server
+
+tags:
+  - name: Patients
+    description: Manage patient records
+  - name: Doctors
+    description: Manage doctor profiles and schedules
+  - name: Appointments
+    description: Book and manage appointments
+  - name: Admissions
+    description: Admit patients into hospital wards
+  - name: Discharge
+    description: Handle patient discharge process
+  - name: Laboratory
+    description: Manage lab tests and results
+  - name: Radiology
+    description: Imaging services and reports
+  - name: Pharmacy
+    description: Manage prescriptions and medicines
+  - name: Billing
+    description: Handle billing and invoices
+  - name: Insurance
+    description: Manage insurance claims and policies
+
+paths:
+  /patients:
+    get:
+      tags: [Patients]
+      summary: Retrieve all patients
+      responses:
+        '200':
+          description: List of patients
+    post:
+      tags: [Patients]
+      summary: Register a new patient
+      responses:
+        '201':
+          description: Patient registered
+
+  /patients/{patientId}:
+    get:
+      tags: [Patients]
+      summary: Get patient details
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Patient details
+
+  /doctors:
+    get:
+      tags: [Doctors]
+      summary: Retrieve all doctors
+      responses:
+        '200':
+          description: List of doctors
+
+  /appointments:
+    post:
+      tags: [Appointments]
+      summary: Book an appointment
+      responses:
+        '201':
+          description: Appointment booked
+
+  /admissions:
+    post:
+      tags: [Admissions]
+      summary: Admit a patient
+      responses:
+        '201':
+          description: Patient admitted
+
+  /discharge/{patientId}:
+    post:
+      tags: [Discharge]
+      summary: Discharge a patient
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Patient discharged
+
+  /laboratory/tests:
+    post:
+      tags: [Laboratory]
+      summary: Request a lab test
+      responses:
+        '201':
+          description: Lab test requested
+
+  /radiology/scans:
+    post:
+      tags: [Radiology]
+      summary: Request a radiology scan
+      responses:
+        '201':
+          description: Radiology scan requested
+
+  /pharmacy/prescriptions:
+    post:
+      tags: [Pharmacy]
+      summary: Create a prescription
+      responses:
+        '201':
+          description: Prescription created
+
+  /billing/invoices:
+    post:
+      tags: [Billing]
+      summary: Generate a bill
+      responses:
+        '201':
+          description: Bill generated
+
+  /insurance/claims:
+    post:
+      tags: [Insurance]
+      summary: Submit an insurance claim
+      responses:
+        '201':
+          description: Claim submitted

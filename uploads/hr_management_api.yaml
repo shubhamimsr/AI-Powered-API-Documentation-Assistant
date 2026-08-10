@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: HR Management API
+  description: API specification for HR services including employees, attendance, payroll, leave, recruitment, performance, departments, assets, and training.
+  version: 1.0.0
+servers:
+  - url: https://api.hrplatform.com/v1
+    description: Production server
+  - url: https://sandbox.hrplatform.com/v1
+    description: Sandbox server
+
+tags:
+  - name: Employees
+    description: Manage employee records
+  - name: Attendance
+    description: Track employee attendance
+  - name: Payroll
+    description: Handle payroll processing
+  - name: Leave
+    description: Manage employee leave requests
+  - name: Recruitment
+    description: Recruitment and candidate management
+  - name: Performance
+    description: Employee performance reviews
+  - name: Departments
+    description: Manage organizational departments
+  - name: Assets
+    description: Track company assets assigned to employees
+  - name: Training
+    description: Manage training programs and sessions
+
+paths:
+  /employees:
+    get:
+      tags: [Employees]
+      summary: Retrieve all employees
+      responses:
+        '200':
+          description: List of employees
+    post:
+      tags: [Employees]
+      summary: Add a new employee
+      responses:
+        '201':
+          description: Employee added
+
+  /employees/{employeeId}:
+    get:
+      tags: [Employees]
+      summary: Get employee details
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Employee details
+
+  /attendance/{employeeId}:
+    post:
+      tags: [Attendance]
+      summary: Mark attendance for an employee
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Attendance marked
+
+  /payroll/{employeeId}:
+    get:
+      tags: [Payroll]
+      summary: Retrieve payroll details for an employee
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payroll details
+
+  /leave:
+    post:
+      tags: [Leave]
+      summary: Submit a leave request
+      responses:
+        '201':
+          description: Leave request submitted
+
+  /recruitment/candidates:
+    post:
+      tags: [Recruitment]
+      summary: Add a candidate to recruitment pipeline
+      responses:
+        '201':
+          description: Candidate added
+
+  /performance/{employeeId}:
+    post:
+      tags: [Performance]
+      summary: Submit performance review for an employee
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Performance review submitted
+
+  /departments:
+    get:
+      tags: [Departments]
+      summary: Retrieve all departments
+      responses:
+        '200':
+          description: List of departments
+
+  /assets:
+    post:
+      tags: [Assets]
+      summary: Assign an asset to an employee
+      responses:
+        '201':
+          description: Asset assigned
+
+  /training:
+    post:
+      tags: [Training]
+      summary: Create a new training program
+      responses:
+        '201':
+          description: Training program created

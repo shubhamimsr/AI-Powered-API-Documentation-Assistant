@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Retail Banking Platform API
+  description: API specification for core retail banking services including accounts, transactions, cards, loans, beneficiaries, fund transfers, statements, KYC, and branches.
+  version: 1.0.0
+servers:
+  - url: https://api.retailbanking.com/v1
+    description: Production server
+  - url: https://sandbox.retailbanking.com/v1
+    description: Sandbox server
+
+tags:
+  - name: Accounts
+    description: Manage customer accounts
+  - name: Transactions
+    description: Handle deposits, withdrawals, and transfers
+  - name: Cards
+    description: Manage debit and credit cards
+  - name: Loans
+    description: Loan applications and repayments
+  - name: Beneficiaries
+    description: Manage beneficiary details
+  - name: Fund Transfers
+    description: Transfer funds between accounts
+  - name: Statements
+    description: Generate and retrieve account statements
+  - name: KYC
+    description: Customer identity verification
+  - name: Branches
+    description: Branch information and services
+
+paths:
+  /accounts:
+    get:
+      tags: [Accounts]
+      summary: Retrieve all accounts
+      responses:
+        '200':
+          description: List of accounts
+    post:
+      tags: [Accounts]
+      summary: Create a new account
+      responses:
+        '201':
+          description: Account created
+
+  /accounts/{accountId}:
+    get:
+      tags: [Accounts]
+      summary: Get account details
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account details
+
+  /transactions:
+    post:
+      tags: [Transactions]
+      summary: Create a transaction
+      responses:
+        '201':
+          description: Transaction recorded
+
+  /cards:
+    get:
+      tags: [Cards]
+      summary: Retrieve all cards
+      responses:
+        '200':
+          description: List of cards
+
+  /loans:
+    post:
+      tags: [Loans]
+      summary: Apply for a loan
+      responses:
+        '201':
+          description: Loan application submitted
+
+  /beneficiaries:
+    post:
+      tags: [Beneficiaries]
+      summary: Add a beneficiary
+      responses:
+        '201':
+          description: Beneficiary added
+
+  /fund-transfers:
+    post:
+      tags: [Fund Transfers]
+      summary: Initiate a fund transfer
+      responses:
+        '201':
+          description: Transfer successful
+
+  /statements/{accountId}:
+    get:
+      tags: [Statements]
+      summary: Retrieve account statement
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account statement
+
+  /kyc:
+    post:
+      tags: [KYC]
+      summary: Submit KYC documents
+      responses:
+        '201':
+          description: KYC submitted
+
+  /branches:
+    get:
+      tags: [Branches]
+      summary: Retrieve branch information
+      responses:
+        '200':
+          description: List of branches

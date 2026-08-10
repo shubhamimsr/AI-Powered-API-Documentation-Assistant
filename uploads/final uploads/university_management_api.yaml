@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+  title: University Management API
+  description: API specification for university services including students, faculty, courses, enrollment, exams, grades, hostel, library, and scholarships.
+  version: 1.0.0
+servers:
+  - url: https://api.university.com/v1
+    description: Production server
+  - url: https://sandbox.university.com/v1
+    description: Sandbox server
+
+tags:
+  - name: Students
+    description: Manage student records
+  - name: Faculty
+    description: Manage faculty profiles
+  - name: Courses
+    description: Course catalog and details
+  - name: Enrollment
+    description: Student course enrollment
+  - name: Exams
+    description: Exam scheduling and results
+  - name: Grades
+    description: Manage student grades
+  - name: Hostel
+    description: Hostel allocation and management
+  - name: Library
+    description: Library catalog and borrowing
+  - name: Scholarships
+    description: Scholarship applications and awards
+
+paths:
+  /students:
+    get:
+      tags: [Students]
+      summary: Retrieve all students
+      responses:
+        '200':
+          description: List of students
+    post:
+      tags: [Students]
+      summary: Register a new student
+      responses:
+        '201':
+          description: Student registered
+
+  /students/{studentId}:
+    get:
+      tags: [Students]
+      summary: Get student details
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Student details
+
+  /faculty:
+    get:
+      tags: [Faculty]
+      summary: Retrieve all faculty members
+      responses:
+        '200':
+          description: List of faculty
+
+  /courses:
+    get:
+      tags: [Courses]
+      summary: Retrieve all courses
+      responses:
+        '200':
+          description: List of courses
+    post:
+      tags: [Courses]
+      summary: Add a new course
+      responses:
+        '201':
+          description: Course added
+
+  /enrollment:
+    post:
+      tags: [Enrollment]
+      summary: Enroll a student in a course
+      responses:
+        '201':
+          description: Enrollment successful
+
+  /exams:
+    post:
+      tags: [Exams]
+      summary: Schedule an exam
+      responses:
+        '201':
+          description: Exam scheduled
+
+  /grades/{studentId}:
+    get:
+      tags: [Grades]
+      summary: Retrieve grades for a student
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Student grades
+
+  /hostel:
+    post:
+      tags: [Hostel]
+      summary: Allocate hostel room to a student
+      responses:
+        '201':
+          description: Hostel room allocated
+
+  /library/books:
+    get:
+      tags: [Library]
+      summary: Retrieve library catalog
+      responses:
+        '200':
+          description: List of books
+
+  /scholarships:
+    post:
+      tags: [Scholarships]
+      summary: Apply for a scholarship
+      responses:
+        '201':
+          description: Scholarship application submitted

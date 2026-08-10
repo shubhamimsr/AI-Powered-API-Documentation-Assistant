@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: IoT Platform API
+  description: API specification for IoT services including devices, sensors, alerts, firmware, telemetry, locations, gateways, commands, and analytics.
+  version: 1.0.0
+servers:
+  - url: https://api.iotplatform.com/v1
+    description: Production server
+  - url: https://sandbox.iotplatform.com/v1
+    description: Sandbox server
+
+tags:
+  - name: Devices
+    description: Manage IoT devices
+  - name: Sensors
+    description: Manage sensor configurations and readings
+  - name: Alerts
+    description: Trigger and manage alerts
+  - name: Firmware
+    description: Firmware updates and management
+  - name: Telemetry
+    description: Collect and analyze telemetry data
+  - name: Locations
+    description: Manage device locations
+  - name: Gateways
+    description: Manage IoT gateways
+  - name: Commands
+    description: Send commands to devices
+  - name: Analytics
+    description: IoT data analytics and insights
+
+paths:
+  /devices:
+    get:
+      tags: [Devices]
+      summary: Retrieve all devices
+      responses:
+        '200':
+          description: List of devices
+    post:
+      tags: [Devices]
+      summary: Register a new device
+      responses:
+        '201':
+          description: Device registered
+
+  /devices/{deviceId}:
+    get:
+      tags: [Devices]
+      summary: Get device details
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Device details
+
+  /sensors:
+    get:
+      tags: [Sensors]
+      summary: Retrieve all sensors
+      responses:
+        '200':
+          description: List of sensors
+    post:
+      tags: [Sensors]
+      summary: Register a new sensor
+      responses:
+        '201':
+          description: Sensor registered
+
+  /alerts:
+    post:
+      tags: [Alerts]
+      summary: Create a new alert
+      responses:
+        '201':
+          description: Alert created
+
+  /firmware/{deviceId}:
+    post:
+      tags: [Firmware]
+      summary: Update firmware for a device
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Firmware updated
+
+  /telemetry/{deviceId}:
+    get:
+      tags: [Telemetry]
+      summary: Retrieve telemetry data for a device
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Telemetry data
+
+  /locations:
+    post:
+      tags: [Locations]
+      summary: Assign location to a device
+      responses:
+        '201':
+          description: Location assigned
+
+  /gateways:
+    get:
+      tags: [Gateways]
+      summary: Retrieve all gateways
+      responses:
+        '200':
+          description: List of gateways
+    post:
+      tags: [Gateways]
+      summary: Register a new gateway
+      responses:
+        '201':
+          description: Gateway registered
+
+  /commands/{deviceId}:
+    post:
+      tags: [Commands]
+      summary: Send command to a device
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Command executed
+
+  /analytics:
+    get:
+      tags: [Analytics]
+      summary: Retrieve analytics insights
+      responses:
+        '200':
+          description: Analytics data

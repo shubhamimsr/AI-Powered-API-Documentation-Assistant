@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Sample API
+  version: 1.0.0
+
+servers:
+  - url: https://api.stripe.com/v1
+
+paths:
+  /customers:
+    post:
+      summary: Create a customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+
+  /charges:
+    post:
+      summary: Create a charge
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                currency:
+                  type: string
+                customer:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+
+  /invoices/{id}:
+    get:
+      summary: Retrieve an invoice
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response

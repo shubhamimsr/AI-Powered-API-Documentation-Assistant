@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: E-Commerce Platform API
+  description: API specification for e-commerce services including products, orders, inventory, customers, wishlist, coupons, cart, payments, returns, and shipping.
+  version: 1.0.0
+servers:
+  - url: https://api.ecommerce.com/v1
+    description: Production server
+  - url: https://sandbox.ecommerce.com/v1
+    description: Sandbox server
+
+tags:
+  - name: Products
+    description: Manage product catalog
+  - name: Orders
+    description: Handle customer orders
+  - name: Inventory
+    description: Track stock levels
+  - name: Customers
+    description: Manage customer profiles
+  - name: Wishlist
+    description: Customer wishlists
+  - name: Coupons
+    description: Discounts and promotional codes
+  - name: Cart
+    description: Shopping cart operations
+  - name: Payments
+    description: Payment processing
+  - name: Returns
+    description: Handle product returns
+  - name: Shipping
+    description: Shipping and delivery services
+
+paths:
+  /products:
+    get:
+      tags: [Products]
+      summary: Retrieve all products
+      responses:
+        '200':
+          description: List of products
+    post:
+      tags: [Products]
+      summary: Add a new product
+      responses:
+        '201':
+          description: Product added
+
+  /products/{productId}:
+    get:
+      tags: [Products]
+      summary: Get product details
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product details
+
+  /orders:
+    post:
+      tags: [Orders]
+      summary: Place a new order
+      responses:
+        '201':
+          description: Order placed
+
+  /inventory/{productId}:
+    get:
+      tags: [Inventory]
+      summary: Check inventory for a product
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Inventory details
+
+  /customers:
+    post:
+      tags: [Customers]
+      summary: Register a new customer
+      responses:
+        '201':
+          description: Customer registered
+
+  /wishlist/{customerId}:
+    get:
+      tags: [Wishlist]
+      summary: Retrieve customer wishlist
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Wishlist items
+
+  /coupons:
+    post:
+      tags: [Coupons]
+      summary: Create a new coupon
+      responses:
+        '201':
+          description: Coupon created
+
+  /cart/{customerId}:
+    post:
+      tags: [Cart]
+      summary: Add item to cart
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Item added to cart
+
+  /payments:
+    post:
+      tags: [Payments]
+      summary: Process a payment
+      responses:
+        '201':
+          description: Payment processed
+
+  /returns:
+    post:
+      tags: [Returns]
+      summary: Initiate a product return
+      responses:
+        '201':
+          description: Return initiated
+
+  /shipping:
+    post:
+      tags: [Shipping]
+      summary: Create a shipping order
+      responses:
+        '201':
+          description: Shipping order created

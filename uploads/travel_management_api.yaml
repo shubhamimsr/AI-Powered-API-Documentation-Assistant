@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+  title: Travel Management API
+  description: API specification for travel services including flights, hotels, bookings, passengers, seat selection, baggage, visa, refunds, and travel insurance.
+  version: 1.0.0
+servers:
+  - url: https://api.travel.com/v1
+    description: Production server
+  - url: https://sandbox.travel.com/v1
+    description: Sandbox server
+
+tags:
+  - name: Flights
+    description: Manage flight schedules and availability
+  - name: Hotels
+    description: Manage hotel listings and reservations
+  - name: Bookings
+    description: Handle travel bookings
+  - name: Passengers
+    description: Manage passenger information
+  - name: Seat Selection
+    description: Seat allocation and preferences
+  - name: Baggage
+    description: Manage baggage allowances and tracking
+  - name: Visa
+    description: Visa application and status
+  - name: Refunds
+    description: Handle booking refunds
+  - name: Travel Insurance
+    description: Manage travel insurance policies and claims
+
+paths:
+  /flights:
+    get:
+      tags: [Flights]
+      summary: Retrieve available flights
+      responses:
+        '200':
+          description: List of flights
+
+  /flights/{flightId}:
+    get:
+      tags: [Flights]
+      summary: Get flight details
+      parameters:
+        - name: flightId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Flight details
+
+  /hotels:
+    get:
+      tags: [Hotels]
+      summary: Retrieve available hotels
+      responses:
+        '200':
+          description: List of hotels
+
+  /bookings:
+    post:
+      tags: [Bookings]
+      summary: Create a new booking
+      responses:
+        '201':
+          description: Booking created
+
+  /passengers:
+    post:
+      tags: [Passengers]
+      summary: Register passenger details
+      responses:
+        '201':
+          description: Passenger registered
+
+  /seat-selection/{bookingId}:
+    post:
+      tags: [Seat Selection]
+      summary: Select seat for a booking
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Seat selected
+
+  /baggage/{bookingId}:
+    post:
+      tags: [Baggage]
+      summary: Add baggage to booking
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Baggage added
+
+  /visa:
+    post:
+      tags: [Visa]
+      summary: Submit visa application
+      responses:
+        '201':
+          description: Visa application submitted
+
+  /refunds/{bookingId}:
+    post:
+      tags: [Refunds]
+      summary: Request refund for a booking
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Refund processed
+
+  /insurance:
+    post:
+      tags: [Travel Insurance]
+      summary: Purchase travel insurance
+      responses:
+        '201':
+          description: Insurance purchased
