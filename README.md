@@ -271,7 +271,7 @@ The project uses the OpenAI-compatible client interface with:
 
 ```text
 Groq API
-Llama 3.1 8B Instant
+openai/gpt-oss-20b
 ```
 
 The LLM receives:
@@ -667,7 +667,7 @@ AI_API_Documentation_QnA/
 | Database | PostgreSQL |
 | Vector Database | pgvector |
 | LLM Provider | Groq |
-| LLM | Llama 3.1 8B Instant |
+| LLM | openai/gpt-oss-20b |
 | Embeddings | External embedding model |
 | Reranking | Sentence Transformers Cross-Encoder |
 | API Documentation | OpenAPI / Swagger |
