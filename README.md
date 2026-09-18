@@ -478,7 +478,7 @@ python server.py
 The current MCP server uses:
 
 ```text
-127.0.0.1:8000
+127.0.0.1:9000
 ```
 
 and Streamable HTTP transport.
